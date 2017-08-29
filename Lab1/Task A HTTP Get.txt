@@ -1,98 +1,121 @@
-No.     Time           Source                Destination           Protocol Length Info
-     10 4.694850       192.168.1.102         128.119.245.12        HTTP     555    GET /ethereal-labs/lab2-1.html HTTP/1.1 
+   2109 242.629211     10.253.231.229        128.119.245.12        HTTP     580    GET /wireshark-labs/HTTP-wireshark-file1.html HTTP/1.1 
 
-Frame 10: 555 bytes on wire (4440 bits), 555 bytes captured (4440 bits)
-Ethernet II, Src: Dell_4f:36:23 (00:08:74:4f:36:23), Dst: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet Protocol Version 4, Src: 192.168.1.102, Dst: 128.119.245.12
-Transmission Control Protocol, Src Port: 4127, Dst Port: 80, Seq: 1, Ack: 1, Len: 501
+Frame 2109: 580 bytes on wire (4640 bits), 580 bytes captured (4640 bits) on interface 0
+Ethernet II, Src: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9), Dst: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Destination: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Source: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.253.231.229, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 56435, Dst Port: 80, Seq: 1, Ack: 1, Len: 514
 Hypertext Transfer Protocol
-    GET /ethereal-labs/lab2-1.html HTTP/1.1\r\n
+    GET /wireshark-labs/HTTP-wireshark-file1.html HTTP/1.1\r\n
+        [Expert Info (Chat/Sequence): GET /wireshark-labs/HTTP-wireshark-file1.html HTTP/1.1\r\n]
+        Request Method: GET
+        Request URI: /wireshark-labs/HTTP-wireshark-file1.html
+        Request Version: HTTP/1.1
     Host: gaia.cs.umass.edu\r\n
-    User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.0.2) Gecko/20021120 Netscape/7.01\r\n
-    Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,text/css,*/*;q=0.1\r\n
-    Accept-Language: en-us, en;q=0.50\r\n
-    Accept-Encoding: gzip, deflate, compress;q=0.9\r\n
-    Accept-Charset: ISO-8859-1, utf-8;q=0.66, *;q=0.66\r\n
-    Keep-Alive: 300\r\n
     Connection: keep-alive\r\n
+    Upgrade-Insecure-Requests: 1\r\n
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\r\n
+    Referer: http://www.ida.liu.se/~TDTS06/labs/2016/Wireshark_HTTP/default.html\r\n
+    Accept-Encoding: gzip, deflate, sdch\r\n
+    Accept-Language: en-US,en;q=0.8,sv;q=0.6\r\n
     \r\n
-    [Full request URI: http://gaia.cs.umass.edu/ethereal-labs/lab2-1.html]
+    [Full request URI: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html]
     [HTTP request 1/2]
-    [Response in frame: 12]
-    [Next request in frame: 13]
+    [Response in frame: 2111]
+    [Next request in frame: 2113]
 
-No.     Time           Source                Destination           Protocol Length Info
-     12 4.718993       128.119.245.12        192.168.1.102         HTTP     439    HTTP/1.1 200 OK  (text/html)
+   2111 242.750535     128.119.245.12        10.253.231.229        HTTP     552    HTTP/1.1 200 OK  (text/html)
 
-Frame 12: 439 bytes on wire (3512 bits), 439 bytes captured (3512 bits)
-Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Dell_4f:36:23 (00:08:74:4f:36:23)
-Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.102
-Transmission Control Protocol, Src Port: 80, Dst Port: 4127, Seq: 1, Ack: 502, Len: 385
+Frame 2111: 552 bytes on wire (4416 bits), 552 bytes captured (4416 bits) on interface 0
+Ethernet II, Src: IETF-VRRP-VRID_37 (00:00:5e:00:01:37), Dst: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Destination: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Source: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 10.253.231.229
+Transmission Control Protocol, Src Port: 80, Dst Port: 56435, Seq: 1, Ack: 515, Len: 486
 Hypertext Transfer Protocol
     HTTP/1.1 200 OK\r\n
-    Date: Tue, 23 Sep 2003 05:29:50 GMT\r\n
-    Server: Apache/2.0.40 (Red Hat Linux)\r\n
-    Last-Modified: Tue, 23 Sep 2003 05:29:00 GMT\r\n
-    ETag: "1bfed-49-79d5bf00"\r\n
+        [Expert Info (Chat/Sequence): HTTP/1.1 200 OK\r\n]
+        Request Version: HTTP/1.1
+        Status Code: 200
+        [Status Code Description: OK]
+        Response Phrase: OK
+    Date: Tue, 29 Aug 2017 13:51:49 GMT\r\n
+    Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips PHP/5.4.16 mod_perl/2.0.10 Perl/v5.16.3\r\n
+    Last-Modified: Tue, 29 Aug 2017 05:59:01 GMT\r\n
+    ETag: "80-557de1ba21b3b"\r\n
     Accept-Ranges: bytes\r\n
-    Content-Length: 73\r\n
-    Keep-Alive: timeout=10, max=100\r\n
+    Content-Length: 128\r\n
+    Keep-Alive: timeout=5, max=100\r\n
     Connection: Keep-Alive\r\n
-    Content-Type: text/html; charset=ISO-8859-1\r\n
+    Content-Type: text/html; charset=UTF-8\r\n
     \r\n
     [HTTP response 1/2]
-    [Time since request: 0.024143000 seconds]
-    [Request in frame: 10]
-    [Next request in frame: 13]
-    [Next response in frame: 14]
-    File Data: 73 bytes
+    [Time since request: 0.121324000 seconds]
+    [Request in frame: 2109]
+    [Next request in frame: 2113]
+    [Next response in frame: 2114]
+    File Data: 128 bytes
 Line-based text data: text/html
 
-No.     Time           Source                Destination           Protocol Length Info
-     13 4.724332       192.168.1.102         128.119.245.12        HTTP     541    GET /favicon.ico HTTP/1.1 
+   2113 242.809784     10.253.231.229        128.119.245.12        HTTP     473    GET /favicon.ico HTTP/1.1 
 
-Frame 13: 541 bytes on wire (4328 bits), 541 bytes captured (4328 bits)
-Ethernet II, Src: Dell_4f:36:23 (00:08:74:4f:36:23), Dst: LinksysG_da:af:73 (00:06:25:da:af:73)
-Internet Protocol Version 4, Src: 192.168.1.102, Dst: 128.119.245.12
-Transmission Control Protocol, Src Port: 4127, Dst Port: 80, Seq: 502, Ack: 386, Len: 487
+Frame 2113: 473 bytes on wire (3784 bits), 473 bytes captured (3784 bits) on interface 0
+Ethernet II, Src: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9), Dst: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Destination: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Source: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.253.231.229, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 56435, Dst Port: 80, Seq: 515, Ack: 487, Len: 407
 Hypertext Transfer Protocol
     GET /favicon.ico HTTP/1.1\r\n
+        [Expert Info (Chat/Sequence): GET /favicon.ico HTTP/1.1\r\n]
+        Request Method: GET
+        Request URI: /favicon.ico
+        Request Version: HTTP/1.1
     Host: gaia.cs.umass.edu\r\n
-    User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.0.2) Gecko/20021120 Netscape/7.01\r\n
-    Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,text/css,*/*;q=0.1\r\n
-    Accept-Language: en-us, en;q=0.50\r\n
-    Accept-Encoding: gzip, deflate, compress;q=0.9\r\n
-    Accept-Charset: ISO-8859-1, utf-8;q=0.66, *;q=0.66\r\n
-    Keep-Alive: 300\r\n
     Connection: keep-alive\r\n
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36\r\n
+    Accept: image/webp,image/*,*/*;q=0.8\r\n
+    Referer: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html\r\n
+    Accept-Encoding: gzip, deflate, sdch\r\n
+    Accept-Language: en-US,en;q=0.8,sv;q=0.6\r\n
     \r\n
     [Full request URI: http://gaia.cs.umass.edu/favicon.ico]
     [HTTP request 2/2]
-    [Prev request in frame: 10]
-    [Response in frame: 14]
+    [Prev request in frame: 2109]
+    [Response in frame: 2114]
 
-No.     Time           Source                Destination           Protocol Length Info
-     14 4.750366       128.119.245.12        192.168.1.102         HTTP     1395   HTTP/1.1 404 Not Found  (text/html)
+   2114 242.930874     128.119.245.12        10.253.231.229        HTTP     550    HTTP/1.1 404 Not Found  (text/html)
 
-Frame 14: 1395 bytes on wire (11160 bits), 1395 bytes captured (11160 bits)
-Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Dell_4f:36:23 (00:08:74:4f:36:23)
-Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.102
-Transmission Control Protocol, Src Port: 80, Dst Port: 4127, Seq: 386, Ack: 989, Len: 1341
+Frame 2114: 550 bytes on wire (4400 bits), 550 bytes captured (4400 bits) on interface 0
+Ethernet II, Src: IETF-VRRP-VRID_37 (00:00:5e:00:01:37), Dst: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Destination: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Source: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 10.253.231.229
+Transmission Control Protocol, Src Port: 80, Dst Port: 56435, Seq: 487, Ack: 922, Len: 484
 Hypertext Transfer Protocol
     HTTP/1.1 404 Not Found\r\n
-    Date: Tue, 23 Sep 2003 05:29:50 GMT\r\n
-    Server: Apache/2.0.40 (Red Hat Linux)\r\n
-    Vary: accept-language\r\n
-    Accept-Ranges: bytes\r\n
-    Content-Length: 1071\r\n
-    Keep-Alive: timeout=10, max=99\r\n
+        [Expert Info (Chat/Sequence): HTTP/1.1 404 Not Found\r\n]
+        Request Version: HTTP/1.1
+        Status Code: 404
+        [Status Code Description: Not Found]
+        Response Phrase: Not Found
+    Date: Tue, 29 Aug 2017 13:51:49 GMT\r\n
+    Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips PHP/5.4.16 mod_perl/2.0.10 Perl/v5.16.3\r\n
+    Content-Length: 209\r\n
+    Keep-Alive: timeout=5, max=99\r\n
     Connection: Keep-Alive\r\n
-    Content-Type: text/html; charset=ISO-8859-1\r\n
+    Content-Type: text/html; charset=iso-8859-1\r\n
     \r\n
     [HTTP response 2/2]
-    [Time since request: 0.026034000 seconds]
-    [Prev request in frame: 10]
-    [Prev response in frame: 12]
-    [Request in frame: 13]
-    File Data: 1071 bytes
+    [Time since request: 0.121090000 seconds]
+    [Prev request in frame: 2109]
+    [Prev response in frame: 2111]
+    [Request in frame: 2113]
+    File Data: 209 bytes
 Line-based text data: text/html
