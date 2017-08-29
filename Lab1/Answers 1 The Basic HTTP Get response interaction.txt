@@ -1,0 +1,19 @@
+Task A:
+
+1. Browser is running version 1.1. Information is located in the GET message Request Version. 
+
+Server is running version 1.1 and is located in the response message in request version. 
+
+2. It accepts English and Swedish and is located in the GET message in Accept-Language.
+
+What type of accepted encoding, host, connection, accepted file formats, user-agent, Upgrade-insecure requests.
+
+3. Can't be seen in the HTTP but can be seen in the IPv4 network section. We can see that our IP is 10.253.231.229 and the server ip is 128.119.245.12.
+
+4. The code is 200 and is located in the response message HTTP Status Code.
+
+5. In the response message HTTP Last Modified: Tue, 29 Aug 2017 05:59:01 GMT.
+
+6. 128 Bytes. In the response messages File data and in Content-Length.
+
+7. No.
