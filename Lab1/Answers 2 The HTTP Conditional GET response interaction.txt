@@ -1,1 +1,16 @@
-1. 
+Task B:
+
+8. No we don't.
+
+9. Yes. Content-length and content-type indicates contents of the file.
+
+10. Yes.
+
+Tue, 29 Aug 2017 05:59:01 GMT
+
+11. Status code: 304 (Not Modified).
+
+No it didnt because the content-length or content-type is not there.
+
+Task B:
+
