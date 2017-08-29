@@ -1,0 +1,58 @@
+      8 6.777247       10.253.231.229        128.119.245.12        HTTP     502    GET /wireshark-labs/HTTP-wireshark-file2.html HTTP/1.1 
+
+Frame 8: 502 bytes on wire (4016 bits), 502 bytes captured (4016 bits) on interface 0
+Ethernet II, Src: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9), Dst: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Destination: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Source: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.253.231.229, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 56551, Dst Port: 80, Seq: 1, Ack: 1, Len: 436
+Hypertext Transfer Protocol
+    GET /wireshark-labs/HTTP-wireshark-file2.html HTTP/1.1\r\n
+        [Expert Info (Chat/Sequence): GET /wireshark-labs/HTTP-wireshark-file2.html HTTP/1.1\r\n]
+        Request Method: GET
+        Request URI: /wireshark-labs/HTTP-wireshark-file2.html
+        Request Version: HTTP/1.1
+    Host: gaia.cs.umass.edu\r\n
+    Connection: keep-alive\r\n
+    Upgrade-Insecure-Requests: 1\r\n
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36\r\n
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\r\n
+    Accept-Encoding: gzip, deflate, sdch\r\n
+    Accept-Language: en-US,en;q=0.8,sv;q=0.6\r\n
+    \r\n
+    [Full request URI: http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html]
+    [HTTP request 1/1]
+    [Response in frame: 10]
+
+     10 6.901042       128.119.245.12        10.253.231.229        HTTP     796    HTTP/1.1 200 OK  (text/html)
+
+Frame 10: 796 bytes on wire (6368 bits), 796 bytes captured (6368 bits) on interface 0
+Ethernet II, Src: IETF-VRRP-VRID_37 (00:00:5e:00:01:37), Dst: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Destination: Apple_c8:8c:b9 (ac:bc:32:c8:8c:b9)
+    Source: IETF-VRRP-VRID_37 (00:00:5e:00:01:37)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 10.253.231.229
+Transmission Control Protocol, Src Port: 80, Dst Port: 56551, Seq: 1, Ack: 437, Len: 730
+Hypertext Transfer Protocol
+    HTTP/1.1 200 OK\r\n
+        [Expert Info (Chat/Sequence): HTTP/1.1 200 OK\r\n]
+        Request Version: HTTP/1.1
+        Status Code: 200
+        [Status Code Description: OK]
+        Response Phrase: OK
+    Date: Tue, 29 Aug 2017 14:41:57 GMT\r\n
+    Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips PHP/5.4.16 mod_perl/2.0.10 Perl/v5.16.3\r\n
+    Last-Modified: Tue, 29 Aug 2017 05:59:01 GMT\r\n
+    ETag: "173-557de1ba2136b"\r\n
+    Accept-Ranges: bytes\r\n
+    Content-Length: 371\r\n
+    Keep-Alive: timeout=5, max=100\r\n
+    Connection: Keep-Alive\r\n
+    Content-Type: text/html; charset=UTF-8\r\n
+    \r\n
+    [HTTP response 1/1]
+    [Time since request: 0.123795000 seconds]
+    [Request in frame: 8]
+    File Data: 371 bytes
+Line-based text data: text/html
