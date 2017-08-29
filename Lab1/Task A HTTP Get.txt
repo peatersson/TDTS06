@@ -1,0 +1,98 @@
+No.     Time           Source                Destination           Protocol Length Info
+     10 4.694850       192.168.1.102         128.119.245.12        HTTP     555    GET /ethereal-labs/lab2-1.html HTTP/1.1 
+
+Frame 10: 555 bytes on wire (4440 bits), 555 bytes captured (4440 bits)
+Ethernet II, Src: Dell_4f:36:23 (00:08:74:4f:36:23), Dst: LinksysG_da:af:73 (00:06:25:da:af:73)
+Internet Protocol Version 4, Src: 192.168.1.102, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 4127, Dst Port: 80, Seq: 1, Ack: 1, Len: 501
+Hypertext Transfer Protocol
+    GET /ethereal-labs/lab2-1.html HTTP/1.1\r\n
+    Host: gaia.cs.umass.edu\r\n
+    User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.0.2) Gecko/20021120 Netscape/7.01\r\n
+    Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,text/css,*/*;q=0.1\r\n
+    Accept-Language: en-us, en;q=0.50\r\n
+    Accept-Encoding: gzip, deflate, compress;q=0.9\r\n
+    Accept-Charset: ISO-8859-1, utf-8;q=0.66, *;q=0.66\r\n
+    Keep-Alive: 300\r\n
+    Connection: keep-alive\r\n
+    \r\n
+    [Full request URI: http://gaia.cs.umass.edu/ethereal-labs/lab2-1.html]
+    [HTTP request 1/2]
+    [Response in frame: 12]
+    [Next request in frame: 13]
+
+No.     Time           Source                Destination           Protocol Length Info
+     12 4.718993       128.119.245.12        192.168.1.102         HTTP     439    HTTP/1.1 200 OK  (text/html)
+
+Frame 12: 439 bytes on wire (3512 bits), 439 bytes captured (3512 bits)
+Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Dell_4f:36:23 (00:08:74:4f:36:23)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.102
+Transmission Control Protocol, Src Port: 80, Dst Port: 4127, Seq: 1, Ack: 502, Len: 385
+Hypertext Transfer Protocol
+    HTTP/1.1 200 OK\r\n
+    Date: Tue, 23 Sep 2003 05:29:50 GMT\r\n
+    Server: Apache/2.0.40 (Red Hat Linux)\r\n
+    Last-Modified: Tue, 23 Sep 2003 05:29:00 GMT\r\n
+    ETag: "1bfed-49-79d5bf00"\r\n
+    Accept-Ranges: bytes\r\n
+    Content-Length: 73\r\n
+    Keep-Alive: timeout=10, max=100\r\n
+    Connection: Keep-Alive\r\n
+    Content-Type: text/html; charset=ISO-8859-1\r\n
+    \r\n
+    [HTTP response 1/2]
+    [Time since request: 0.024143000 seconds]
+    [Request in frame: 10]
+    [Next request in frame: 13]
+    [Next response in frame: 14]
+    File Data: 73 bytes
+Line-based text data: text/html
+
+No.     Time           Source                Destination           Protocol Length Info
+     13 4.724332       192.168.1.102         128.119.245.12        HTTP     541    GET /favicon.ico HTTP/1.1 
+
+Frame 13: 541 bytes on wire (4328 bits), 541 bytes captured (4328 bits)
+Ethernet II, Src: Dell_4f:36:23 (00:08:74:4f:36:23), Dst: LinksysG_da:af:73 (00:06:25:da:af:73)
+Internet Protocol Version 4, Src: 192.168.1.102, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 4127, Dst Port: 80, Seq: 502, Ack: 386, Len: 487
+Hypertext Transfer Protocol
+    GET /favicon.ico HTTP/1.1\r\n
+    Host: gaia.cs.umass.edu\r\n
+    User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.0.2) Gecko/20021120 Netscape/7.01\r\n
+    Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,text/css,*/*;q=0.1\r\n
+    Accept-Language: en-us, en;q=0.50\r\n
+    Accept-Encoding: gzip, deflate, compress;q=0.9\r\n
+    Accept-Charset: ISO-8859-1, utf-8;q=0.66, *;q=0.66\r\n
+    Keep-Alive: 300\r\n
+    Connection: keep-alive\r\n
+    \r\n
+    [Full request URI: http://gaia.cs.umass.edu/favicon.ico]
+    [HTTP request 2/2]
+    [Prev request in frame: 10]
+    [Response in frame: 14]
+
+No.     Time           Source                Destination           Protocol Length Info
+     14 4.750366       128.119.245.12        192.168.1.102         HTTP     1395   HTTP/1.1 404 Not Found  (text/html)
+
+Frame 14: 1395 bytes on wire (11160 bits), 1395 bytes captured (11160 bits)
+Ethernet II, Src: LinksysG_da:af:73 (00:06:25:da:af:73), Dst: Dell_4f:36:23 (00:08:74:4f:36:23)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.102
+Transmission Control Protocol, Src Port: 80, Dst Port: 4127, Seq: 386, Ack: 989, Len: 1341
+Hypertext Transfer Protocol
+    HTTP/1.1 404 Not Found\r\n
+    Date: Tue, 23 Sep 2003 05:29:50 GMT\r\n
+    Server: Apache/2.0.40 (Red Hat Linux)\r\n
+    Vary: accept-language\r\n
+    Accept-Ranges: bytes\r\n
+    Content-Length: 1071\r\n
+    Keep-Alive: timeout=10, max=99\r\n
+    Connection: Keep-Alive\r\n
+    Content-Type: text/html; charset=ISO-8859-1\r\n
+    \r\n
+    [HTTP response 2/2]
+    [Time since request: 0.026034000 seconds]
+    [Prev request in frame: 10]
+    [Prev response in frame: 12]
+    [Request in frame: 13]
+    File Data: 1071 bytes
+Line-based text data: text/html
