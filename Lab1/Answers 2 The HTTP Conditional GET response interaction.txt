@@ -12,5 +12,8 @@ Tue, 29 Aug 2017 05:59:01 GMT
 
 No it didnt because the content-length or content-type is not there.
 
-Task B:
 
+Summary:
+
+Much information is gained only by looking at the different header-names.
+Knowing what to look for makes it easy to trace because of the declarative names, therefore information/properties is easily accessible.
