@@ -1,0 +1,10 @@
+12. One message.
+
+13. 4 Messages were recieved 3 TCP segments containing data and one HTTP response message.
+
+14. 200 OK
+
+15. Yes on the first segment.
+
+Task C: When the webpage is larger than one TCP packet it's segmented into several TCP segments 
+and one HTTP response message. The HTTP response message then sums up all the segments into one message.
