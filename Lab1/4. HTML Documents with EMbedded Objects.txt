@@ -1,0 +1,9 @@
+16. 4 Request messages.
+
+From: manic.cs.umass.edu, caite.cs.umass.edu, gaia.cs.umass.edu.
+
+17. Serially because the times of the messages are different and not the same.
+
+Task D: Manic is rederecting the GET message to caite because it has been moved. 
+The text and the images all get their own GET message to load in.
+
