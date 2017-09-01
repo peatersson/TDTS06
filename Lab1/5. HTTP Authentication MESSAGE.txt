@@ -1,0 +1,55 @@
+No.     Time           Source                Destination           Protocol Length Info
+     29 2.458654       192.168.43.89         128.119.245.12        HTTP     583    GET /wireshark-labs/protected_pages/HTTP-wireshark-file5.html HTTP/1.1 
+
+Frame 29: 583 bytes on wire (4664 bits), 583 bytes captured (4664 bits) on interface 0
+Ethernet II, Src: Microsof_49:b5:97 (98:5f:d3:49:b5:97), Dst: OneplusT_f2:9c:56 (c0:ee:fb:f2:9c:56)
+Internet Protocol Version 4, Src: 192.168.43.89, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 60214, Dst Port: 80, Seq: 1, Ack: 1, Len: 529
+Hypertext Transfer Protocol
+
+No.     Time           Source                Destination           Protocol Length Info
+     33 2.666107       128.119.245.12        192.168.43.89         HTTP     771    HTTP/1.1 401 Unauthorized  (text/html)
+
+Frame 33: 771 bytes on wire (6168 bits), 771 bytes captured (6168 bits) on interface 0
+Ethernet II, Src: OneplusT_f2:9c:56 (c0:ee:fb:f2:9c:56), Dst: Microsof_49:b5:97 (98:5f:d3:49:b5:97)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.43.89
+Transmission Control Protocol, Src Port: 80, Dst Port: 60214, Seq: 1, Ack: 530, Len: 717
+Hypertext Transfer Protocol
+Line-based text data: text/html
+    <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n
+    <html><head>\n
+    <title>401 Unauthorized</title>\n
+    </head><body>\n
+    <h1>Unauthorized</h1>\n
+    <p>This server could not verify that you\n
+    are authorized to access the document\n
+    requested.  Either you supplied the wrong\n
+    credentials (e.g., bad password), or your\n
+    browser doesn't understand how to supply\n
+    the credentials required.</p>\n
+    </body></html>\n
+
+No.     Time           Source                Destination           Protocol Length Info
+    123 20.517178      192.168.43.89         128.119.245.12        HTTP     642    GET /wireshark-labs/protected_pages/HTTP-wireshark-file5.html HTTP/1.1 
+
+Frame 123: 642 bytes on wire (5136 bits), 642 bytes captured (5136 bits) on interface 0
+Ethernet II, Src: Microsof_49:b5:97 (98:5f:d3:49:b5:97), Dst: OneplusT_f2:9c:56 (c0:ee:fb:f2:9c:56)
+Internet Protocol Version 4, Src: 192.168.43.89, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 60245, Dst Port: 80, Seq: 1, Ack: 1, Len: 588
+Hypertext Transfer Protocol
+
+No.     Time           Source                Destination           Protocol Length Info
+    131 20.684947      128.119.245.12        192.168.43.89         HTTP     544    HTTP/1.1 200 OK  (text/html)
+
+Frame 131: 544 bytes on wire (4352 bits), 544 bytes captured (4352 bits) on interface 0
+Ethernet II, Src: OneplusT_f2:9c:56 (c0:ee:fb:f2:9c:56), Dst: Microsof_49:b5:97 (98:5f:d3:49:b5:97)
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.43.89
+Transmission Control Protocol, Src Port: 80, Dst Port: 60245, Seq: 1, Ack: 589, Len: 490
+Hypertext Transfer Protocol
+Line-based text data: text/html
+    \n
+    <html>\n
+    \n
+    This page is password protected!  If you're seeing this, you've downloaded the page correctly <br>\n
+    Congratulations!\n
+    </html>
