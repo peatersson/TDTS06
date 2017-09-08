@@ -6,6 +6,7 @@ class Header:
         self.headers = 0
         self.host = 0
         self.port = 0
+        self.connection = 0
 
     def splitHeader(self, data):
         splittedLines = data.decode("utf-8").splitlines();
@@ -14,8 +15,12 @@ class Header:
 
         for elem in splittedLines:
             if "Host" in elem:
-                self.host = splittedLines[1].split(" ")[1]
-                break
+                self.host = elem.split(" ")[1]
+            elif "Connection" in elem:
+                if str(elem.split(" ")[1]).lower() == 'keep-alive':
+                    self.connection = True
+                else:
+                    self.connection = False
 
         #Check if host contains port or should be default port 80
         if ":" in self.host:
@@ -24,4 +29,4 @@ class Header:
             self.port = int(splitstring[1])
         else:
             self.port = 80
-        print("Host: ", self.host, "Port: ", self.port)
+        #print("Host: ", self.host, "Port: ", self.port)
