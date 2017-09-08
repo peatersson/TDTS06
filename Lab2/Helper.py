@@ -1,4 +1,5 @@
 import socket, sys
+from Header import Header
 
 
 class NetNinny:
@@ -23,27 +24,13 @@ class NetNinny:
 
                     print(clientData.decode("utf-8"))
 
-                    #Get host and port from GET message
-                    splittedLines = clientData.decode("utf-8").splitlines();
+                    self.headers = Header()
+                    self.headers.splitHeader(clientData)
 
-                    #Loop through all objects and take Host
-                    for elem in splittedLines:
-                        if "Host" in elem:
-                            host = splittedLines[1].split(" ")[1]
-                            break
-
-                    #Check if host contains port or should be default port 80
-                    if ":" in host:
-                        splitstring = host.split(":")
-                        host = splitstring[0]
-                        port = int(splitstring[1])
-                    else:
-                        port = 80
-                    print("Host: ", host, "Port: ", port)
                     try:
                         self.proxyToServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                         print("hello")
-                        self.proxyToServer.connect((host, port))
+                        self.proxyToServer.connect((self.headers.host, self.headers.port))
                         print("din")
                     except socket.error as msg:
                         print("cant reconnect or connect to proxyToServer")
