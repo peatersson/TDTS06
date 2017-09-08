@@ -17,7 +17,7 @@ class NetNinny:
                 while True:
                     clientData = clientSocket.recv(1024)
                     if not clientData:
-                        break;
+                        break
                     print(clientData)
                     self.proxyToServer.settimeout(15)
 
