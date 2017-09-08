@@ -12,47 +12,56 @@ class NetNinny:
     def poll(self):
         try:
             while True:
-                #Set default port in case no other is declared
-                port = 80
                 print("Before accept")
                 (clientSocket, client) = self.clientServerSocket.accept()
-                clientData = clientSocket.recv(1024)
-                print(clientData)
-                self.proxyToServer.settimeout(15)
+                while True:
+                    clientData = clientSocket.recv(1024)
+                    if not clientData:
+                        break;
+                    print(clientData)
+                    self.proxyToServer.settimeout(15)
 
-                print(clientData.decode("utf-8"))
+                    print(clientData.decode("utf-8"))
 
-                #Get host and port from GET message
-                splittedLines = clientData.decode("utf-8").splitlines();
+                    #Get host and port from GET message
+                    splittedLines = clientData.decode("utf-8").splitlines();
 
-                #Loop thorugh all objects and take Host
-                for elem in splittedLines:
-                    if "Host" in elem:
-                        host = splittedLines[1].split(" ")[1]
-                        break
+                    #Loop through all objects and take Host
+                    for elem in splittedLines:
+                        if "Host" in elem:
+                            host = splittedLines[1].split(" ")[1]
+                            break
 
-                #Check if host contains port
-                if ":" in host:
-                    splitstring = host.split(":")
-                    host = splitstring[0]
-                    port = splitstring[1]
+                    #Check if host contains port or should be default port 80
+                    if ":" in host:
+                        splitstring = host.split(":")
+                        host = splitstring[0]
+                        port = int(splitstring[1])
+                    else:
+                        port = 80
+                    print("Host: ", host, "Port: ", port)
+                    try:
+                        self.proxyToServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                        print("hello")
+                        self.proxyToServer.connect((host, port))
+                        print("din")
+                    except socket.error as msg:
+                        print("cant reconnect or connect to proxyToServer")
 
-                print("Host: ", host, "Port: ", port)
-                self.proxyToServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                self.proxyToServer.connect((host, int(port)))
-
-                self.proxyToServer.send(clientData)
-
-                recieved = self.proxyToServer.recv(1024)
-                clientSocket.send(recieved)
+                    self.proxyToServer.send(clientData)
+                    print("mamma")
+                    recieved = self.proxyToServer.recv(1024)
+                    clientSocket.send(recieved)
 
                 self.proxyToServer.close()
-                #clientSocket.close()
+                clientSocket.close()
 
         except socket.error as msg:
             print(msg)
-            self.clientServerSocket.close()
+            clientSocket.close()
+            print("hej")
             self.proxyToServer.close()
+            print("då")
 
 
 if __name__ == "__main__":
