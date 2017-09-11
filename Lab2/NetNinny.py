@@ -1,10 +1,11 @@
 import socket
+import sys
 from Header import Header
 from Connection import Connection
 from threading import Thread
 
 class NetNinny:
-    def __init__(self):
+    def __init__(self, port):
         self.MAXSIZE = 65565
         self.activeConnections = {}
         self.activeSockets = {}
@@ -12,7 +13,7 @@ class NetNinny:
         #self.proxyToServer.settimeout(15)
 
         self.clientServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.clientServerSocket.bind(('localhost', 8080))
+        self.clientServerSocket.bind(('localhost', port))
         self.clientServerSocket.listen(5)
 
     def poll(self):
@@ -60,5 +61,6 @@ class NetNinny:
 
 
 if __name__ == "__main__":
-    proxy = NetNinny()
+    print("SYSARG: ", sys.argv[1])
+    proxy = NetNinny(int(sys.argv[1]))
     proxy.poll()
