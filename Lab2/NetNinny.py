@@ -3,7 +3,6 @@ from Header import Header
 from Connection import Connection
 from threading import Thread
 
-
 class NetNinny:
     def __init__(self):
         self.MAXSIZE = 65565
@@ -22,7 +21,7 @@ class NetNinny:
                 (clientSocket, client) = self.clientServerSocket.accept()
                 clientData = clientSocket.recv(self.MAXSIZE)
 
-                print(client)
+                #print(client)
 
                 #self.activeSockets[]
 
@@ -40,25 +39,24 @@ class NetNinny:
 
                 # create new thread for this connection
                 #else:
-                print("ny tråd")
+                print("ny tråd: ", self.header.host)
                 connection = Connection(clientSocket, self.header, clientData, self.MAXSIZE)
-                thread = Thread(connection.poll())
-                self.activeConnections[self.header.host] = thread
-                thread.start()
-
+                self.activeConnections[self.header.host] = connection
+                connection.start()
+                print("START")
                 keyList = []
 
-                for key in self.activeConnections:
-                    t = self.activeConnections.get(key)
+                #for key in self.activeConnections:
+                 #   t = self.activeConnections.get(key)
 
-                    if not t.isAlive():
-                        keyList.append(key)
-
-                for k in keyList:
-                    del self.activeConnections[k]
+                  #  if not t.isAlive():
+                   #     keyList.append(key)
+#
+                #for k in keyList:
+               #     del self.activeConnections[k]
 
         except socket.error as msg:
-            print(msg)
+            print("From Main: ", msg)
 
 
 if __name__ == "__main__":

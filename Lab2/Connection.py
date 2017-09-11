@@ -1,8 +1,9 @@
 import socket
+import threading
 
-
-class Connection:
+class Connection(threading.Thread):
     def __init__(self, cS, headers, data, size):
+        threading.Thread.__init__(self)
         self.MAXSIZE = size
         self.clientSocket = cS
         self.header = headers
@@ -11,52 +12,47 @@ class Connection:
         self.clientDisc = False
 
         self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        #self.serverSocket.settimeout(15)
+        #self.serverSocket.settimeout(5)
         self.serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.serverSocket.connect((self.header.host, self.header.port))
 
         self.serverSocket.setblocking(0)
         self.clientSocket.setblocking(0)
 
-    def poll(self):
+    def run(self):
+        #print("Request: ", self.data)
         self.serverSocket.send(self.data)
 
         while True:
             try:
+                fromServer = b''
                 fromServer = self.serverSocket.recv(self.MAXSIZE)
-
+                #print("fromServer: ", fromServer)
+                self.clientSocket.send(fromServer)
                 if fromServer == b'':
-                    if self.clientDisc:
-                        break
-                    else:
-                        self.serverDisc = True
-                else:
-                    self.serverDisc = False
-                    self.clientSocket.send(fromServer)
+                    break
 
             except socket.error as msg:
-                x = 0
+                #print("FromServer: ", msg)
+                x=1
 
             try:
+                fromClient = b''
                 fromClient = self.clientSocket.recv(self.MAXSIZE)
-
+                #print("fromClient: ", fromServer)
                 if fromClient == b'':
-                    if self.serverDisc:
-                        break
-                    else:
-                        self.clientDisc = True
+                    self.serverSocket.send(fromClient)
+                    break
                 else:
-                    self.clientDisc = False
                     self.data = fromClient
-                    temphost = self.header.host
                     self.header.splitHeader(self.data)
                     self.serverSocket.send(self.data)
-                    print("temp: ", temphost, "header: ", self.header.host)
-
             except socket.error as msg:
-                if socket.error.errno == socket.errno.ENODATA:
-                    print("no data")
+                #print("FromClient: ", msg)
+                msg
 
+
+        print("CLOSING")
         self.clientSocket.close()
         self.serverSocket.close()
 
