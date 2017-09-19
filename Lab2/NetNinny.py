@@ -2,11 +2,11 @@ import socket
 import sys
 from Header import Header
 from Connection import Connection
-from threading import Thread
+
 
 class NetNinny:
     def __init__(self, port):
-        self.MAXSIZE = 65565
+        self.MAXSIZE = 100000#65565
         self.activeConnections = {}
         self.activeSockets = {}
         self.proxyToServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,24 +15,23 @@ class NetNinny:
         self.clientServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.clientServerSocket.bind(('localhost', port))
         self.clientServerSocket.listen(5)
+        self.header = Header()
 
     def poll(self):
         try:
             while True:
                 (clientSocket, client) = self.clientServerSocket.accept()
-                clientData = clientSocket.recv(self.MAXSIZE)
+                client_data = clientSocket.recv(self.MAXSIZE)
 
                 #print(client)
 
                 #self.activeSockets[]
 
-                if not clientData:
+                if not client_data:
                     continue
 
                 # possible new connection
-                self.header = Header()
-                self.header.splitHeader(clientData)
-
+                self.header.split_header(False, client_data)
                 #if self.header.host in self.activeConnections.keys():
                  #   print("samma tråd")
                     # new connection to same host
@@ -41,11 +40,11 @@ class NetNinny:
                 # create new thread for this connection
                 #else:
                 print("ny tråd: ", self.header.host)
-                connection = Connection(clientSocket, self.header, clientData, self.MAXSIZE)
+                connection = Connection(clientSocket, self.header, client_data, self.MAXSIZE)
                 self.activeConnections[self.header.host] = connection
                 connection.start()
                 print("START")
-                keyList = []
+                #keyList = []
 
                 #for key in self.activeConnections:
                  #   t = self.activeConnections.get(key)
