@@ -39,5 +39,5 @@ class WebFilter:
 
         response = '{} 302 Found\r\nLocation: {}{}\r\nContent-Length: {}\r\nConnection: close\r\nConnection-Type: text/html; charset=iso-8859-1\r\n\r\n{}'.format(header.http_version, host, response, bodylength, body)
 
-        print("Resposne: ", response)
+        #print("Resposne: ", response)
         return response.encode("utf-8")

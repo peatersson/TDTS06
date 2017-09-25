@@ -1,5 +1,6 @@
 import socket
 import threading
+import time
 from WebFilter import WebFilter
 
 
@@ -17,10 +18,9 @@ class Connection(threading.Thread):
         self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.serverSocket.connect((self.header.host, self.header.port))
-        self.serverSocket.settimeout(0.5)
+        self.serverSocket.settimeout(2)
 
         #self.serverSocket.setblocking(0)
-        #self.clientSocket.setblocking(0)
 
         self.filter = WebFilter()
         self.filter.add_forbidden_word("SpongeBob")
@@ -42,31 +42,35 @@ class Connection(threading.Thread):
             self.serverSocket.send(self.data)
 
             from_server = b''
-            buffer = b''
-            while True:
-                try:
-                    buffer = self.serverSocket.recv(self.MAXSIZE)
-                    if len(buffer) == 0:
-                        break
-                except :
-                    break
-                from_server = b''.join([from_server, buffer])
 
+            while True:
+                buffers = b''
+                try:
+                    buffers = self.serverSocket.recv(self.MAXSIZE)
+                    if len(buffers) == 0:
+
+                        #print("zero: ")
+                        break
+
+                    from_server = b''.join([from_server, buffers])
+                except socket.error as msg:
+                    #print("BREAK: ", msg)
+                    break
 
             self.header.split_header(True, from_server)
 
             if self.header.content_type == "text/html" and self.header.body:
-                if self.filter.contains_forbidden_word(self.header.body):
+                if self.filter.contains_forbidden_word(self.header.body.decode('utf-8')):
                     from_server = self.filter.create_response(False, self.header)
                     self.clientSocket.send(from_server)
                     self.header.clear_headers()
                     self.clientSocket.close()
                     self.serverSocket.close()
+
+                    print
                     return
 
             self.clientSocket.send(from_server)
-                #Insert multiline comment here
-                #self.header.clear_headers()
             self.clientSocket.close()
             self.serverSocket.close()
 

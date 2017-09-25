@@ -6,13 +6,13 @@ from Connection import Connection
 
 class NetNinny:
     def __init__(self, port):
-        self.MAXSIZE = 4096#65565
-        self.activeConnections = {}
-        self.activeSockets = {}
+        self.MAXSIZE = 65565
+        #self.activeConnections = {}
+        #self.activeSockets = {}
         self.proxyToServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
         self.clientServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.clientServerSocket.bind(('localhost', port))
+        self.clientServerSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.clientServerSocket.bind(('127.0.0.1', port))
         self.clientServerSocket.listen(5)
         self.header = Header()
 
@@ -29,10 +29,10 @@ class NetNinny:
                 self.header.split_header(False, client_data)
 
                 connection = Connection(clientSocket, self.header, client_data_str, self.MAXSIZE)
-                self.activeConnections[self.header.host] = connection
+                #self.activeConnections[self.header.host] = connection
                 connection.start()
                 print("START: ", self.header.host)
-                key_list = []
+                """key_list = []
 
                 for key in self.activeConnections:
                     t = self.activeConnections.get(key)
@@ -41,7 +41,7 @@ class NetNinny:
                         key_list.append(key)
 #
                 for k in key_list:
-                    del self.activeConnections[k]
+                    del self.activeConnections[k]"""
 
             except socket.error as msg:
                 print("From Main: ", msg)
