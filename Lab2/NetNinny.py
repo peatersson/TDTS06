@@ -17,19 +17,21 @@ class NetNinny:
         self.header = Header()
 
     def poll(self):
-        try:
-            while True:
+        while True:
+            try:
+
                 (clientSocket, client) = self.clientServerSocket.accept()
                 client_data = clientSocket.recv(self.MAXSIZE)
                 if not client_data:
                     continue
 
+                client_data_str = (client_data.decode()).replace("Proxy-Connection:", "Connection:", 1).encode()
                 self.header.split_header(False, client_data)
 
-                connection = Connection(clientSocket, self.header, client_data, self.MAXSIZE)
+                connection = Connection(clientSocket, self.header, client_data_str, self.MAXSIZE)
                 self.activeConnections[self.header.host] = connection
                 connection.start()
-                # print("START")
+                print("START: ", self.header.host)
                 key_list = []
 
                 for key in self.activeConnections:
@@ -41,11 +43,11 @@ class NetNinny:
                 for k in key_list:
                     del self.activeConnections[k]
 
-        except socket.error as msg:
-            print("From Main: ", msg)
+            except socket.error as msg:
+                print("From Main: ", msg)
 
 
 if __name__ == "__main__":
-    print("SYSARG: ", sys.argv[1])
+    print("Proxy open on port: ", sys.argv[1])
     proxy = NetNinny(int(sys.argv[1]))
     proxy.poll()

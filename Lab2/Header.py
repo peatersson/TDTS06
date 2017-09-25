@@ -33,11 +33,12 @@ class Header:
             split_lines = temp.decode("utf-8").split("\r\n")
         except UnicodeDecodeError as msg:
             print("Error:", msg)
+            self.body = 0
             return
         # Loop through all objects and take Host
 
         for elem in split_lines:
-            if "Host" in elem:
+            if "Host" in elem or "CONNECT" in elem:
                 self.host = elem.split(" ")[1]
                 # Check if host contains port or should be default port 80
                 if ":" in self.host:

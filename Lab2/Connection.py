@@ -52,6 +52,7 @@ class Connection(threading.Thread):
                     break
                 from_server = b''.join([from_server, buffer])
 
+
             self.header.split_header(True, from_server)
 
             if self.header.content_type == "text/html" and self.header.body:
