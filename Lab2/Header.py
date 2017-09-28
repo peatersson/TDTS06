@@ -23,16 +23,13 @@ class Header:
         try:
             pos = data.find(b'\r\n\r\n')
             if pos == -1:
-                #print("AT THIS PINT")
                 self.body = data
                 return
             temp = data[0:pos]
             if server:
-                #print("SERVER PART")
-                self.body = data[pos+1:]
+                self.body = data[pos+4:]
             else:
                 self.body = 0
-            #print("SPLIT LINES PART")
             split_lines = temp.decode("utf-8").split("\r\n")
         except UnicodeDecodeError as msg:
             print("Error:", msg)

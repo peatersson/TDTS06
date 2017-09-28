@@ -20,8 +20,6 @@ class Connection(threading.Thread):
         self.serverSocket.connect((self.header.host, self.header.port))
         self.serverSocket.settimeout(2)
 
-        #self.serverSocket.setblocking(0)
-
         self.filter = WebFilter()
         self.filter.add_forbidden_word("SpongeBob")
         self.filter.add_forbidden_word("Britney Spears")
@@ -40,35 +38,31 @@ class Connection(threading.Thread):
                     return
 
             self.serverSocket.send(self.data)
-
             from_server = b''
 
             while True:
-                buffers = b''
                 try:
                     buffers = self.serverSocket.recv(self.MAXSIZE)
                     if len(buffers) == 0:
-
-                        #print("zero: ")
                         break
 
                     from_server = b''.join([from_server, buffers])
                 except socket.error as msg:
-                    #print("BREAK: ", msg)
                     break
 
             self.header.split_header(True, from_server)
 
             if self.header.content_type == "text/html" and self.header.body:
-                if self.filter.contains_forbidden_word(self.header.body.decode('utf-8')):
-                    from_server = self.filter.create_response(False, self.header)
-                    self.clientSocket.send(from_server)
-                    self.header.clear_headers()
-                    self.clientSocket.close()
-                    self.serverSocket.close()
-
-                    print
-                    return
+                try:
+                    if self.filter.contains_forbidden_word(self.header.body.decode('utf-8')):
+                        from_server = self.filter.create_response(False, self.header)
+                        self.clientSocket.send(from_server)
+                        self.header.clear_headers()
+                        self.clientSocket.close()
+                        self.serverSocket.close()
+                        return
+                except UnicodeDecodeError as msg:
+                    print("Error in Connection: ", msg)
 
             self.clientSocket.send(from_server)
             self.clientSocket.close()
