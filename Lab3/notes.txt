@@ -1,0 +1,157 @@
+Task A
+
+1.
+Q: What are the first and last packets for the POST request?
+A: First and last packet is a (PSH,ACK) message. First one indicates that the client
+has no further data to add and the last one is an indication that no further data is to be transmitted.
+
+2.
+Q: What is the IP address and the TCP port used by the client computer (source) that is transferring the file to gaia.cs.umass.edu?
+A: IP: 192.168.1.102, TCP-port: 1161.
+
+3.
+Q: What is the IP address of gaia.cs.umass.edu? On what port number is it sending and receiving TCP segments for this connection?
+A: IP: 128.119.245.12, Port: 80.
+
+4.
+Q: What is the sequence number of the TCP SYN segment that is used to initiate the TCP connection between the client computer and gaia.cs.umass.edu?
+What is it in the segment that identifies the segment as a SYN segment?
+A: Sequence number 0, and what indicates it being a SYN-segment is that the flag SYN is set in the 'flags' header.
+
+5.
+Q: What is the sequence number of the SYNACK segment sent by gaia.cs.umass.edu to the client computer in reply to the SYN?
+What is the value of the ACKnowledgement field in the SYNACK segment? How did gaia.cs.umass.edu determine that value?
+What is it in the segment that identifies the segment as a SYNACK segment?
+A: Sequence number 0. Acknowledgement number 1, by adding 1 to the sequence number.
+Identification of it being a SYNACK is the flags for both SYN and ACK being set.
+
+6.
+Q: What is the sequence number of the TCP segment containing the HTTP POST command?
+A: 164041, last sequence number (frame 197) + length of data (frame 197).
+
+7.
+Q: Consider the TCP segment containing the HTTP POST as the first segment in the TCP connection.
+What are the sequence numbers of the first six segments in the TCP connection (including the segment containing the HTTP POST)?
+At what time was each segment sent? When was the ACK for each segment received? Given the difference between when each TCP segment was sent,
+and when its acknowledgement was received, what is the RTT value for each of the six segments? What is the EstimatedRTT value (see page
+277 in text) after the receipt of each ACK? Assume that the value of the EstimatedRTT is equal to the measured RTT for the first segment,
+and then is computed using the EstimatedRTT equation on page 277 for all subsequent segments.
+A:
+            1           2           3          4          5          6
+sq#         164041      1
+time        5.297341
+ack         5.447887
+RTT         159ms
+eRTT
+
+
+8.
+Q: What is the length of each of the first six TCP segments?
+A: 1 - 565, 2 - 1460, 3 - 1460, 4 - 1460, 5 - 1460, 6 - 1460.
+
+9.
+Q: What is the minimum amount of available buffer space advertised at the receiver for the entire trace?
+Does the lack of receiver buffer space ever throttle the sender?
+A: 5840, as can be seen in the first SYN,ACK message from the server.
+No it doesn't, the buffer space is increasing.
+
+10.
+Q: Are there any retransmitted segments in the trace file? What did you check for (in the trace) in order to answer this question?
+A: No there is not. We can see this by looking at the time sequence graph and realizing that no number is repeated.
+
+
+11.
+Q: How much data does the receiver typically acknowledge in an ACK?
+Can you identify cases where the receiver is ACKing every other received segment (see Table 3.2 on page 285 in the text).
+A: It acknowledge typically 2920 bytes. Yes, every other segment received is being ACK'ed.
+
+
+12.
+Q: What is the throughput (bytes transferred per unit time) for the TCP connection? Explain how you calculated this value.
+A: throughput = (ACK_number_last - ACK_number_first) / (time_last - time_first)
+-> (164091 - 1) / (5.455830 - 0.026477) = 164090 / 5.429353 = 30 222.5 B/s
+
+Summary:
+
+
+
+
+Task B
+
+13.
+Q: Use the Time-Sequence-Graph (Stevens) plotting tool to view the sequence number versus time plot of segments being sent from the
+client to the server (Figure 2a and Figure 2b). For each of the two traces, can you identify where TCP's slow start phase begins and ends,
+and where congestion avoidance takes over? If you can, explain how. If not, explain why not. To better identify these phases,
+you may need to find the number of unacknowledged packets (or bytes) at different times and plot the unacknowledged packets (y-axis)
+as a function of time (x-axis). Note that the number of unacknowledged packets at different times can be found by comparing the number
+of packets that have been sent with the number of packets that have been acknowledged. After plotting the number of unacknowledged packets versus time,
+comment on ways in which the measured data differs from the idealized behaviour of TCP that we've studied in the text.
+A: In the first one (trace1) - no. There is no need. The window size increases and the client never 'uses' that much of space, there no congestion avoidance.
+In the second (trace2) - yes. After about 20 packets we end the slow start behavior and enters congestion avoidance. This is a reappearing behaviour by noticing
+the fact that the vertical parts of the graph seems equally big, but the linear part (congestion) is getting bigger. This means that the sender reaches the
+window size and have to wait for ACK's before sending new packets. The congestion window increases by 1 MSS, therefore the 'tail' grows bigger.
+
+14.
+Q: Explain the relationship between (i) the congestion window, (ii) the receiver advertised window, (iii) the number of unacknowledged bytes,
+and (iv) the effective window at the sender.
+A:
+i) Congestion window starts out small and increases with every packet sent. When a loss is detected this value is cut in half and set as threshold.
+This value is for the sender to set the threshold for the slow-start.
+ii) The receiver advertised window is the maximum size able to be received by the receiver before waiting for ACK's is needed.
+iii) The number of unacknowledged bytes is the number of bytes the sender can send without needing an ACK. This value is limited by the
+congestion window and the receiver window, since both is a kind of threshold for 'reliable' sending.
+iv) The effective window at the sender is a value specifying the amount of bytes that the sender can send. It depends on the number of unacknowledged bytes.
+
+15.
+Q: Is it generally possible to find the congestion window size (i.e. cwnd) and how it changes with time, from the captured trace files?
+If so, please explain how. If not, please explain when and when not. Motivate your answer and give examples.
+Your answer may also benefit from trying to describe and discuss your answer in the context of the two prior questions, for example.
+A: Generally no, but if there is packet losses the value could be estimated roughly by using the threshold value.  Otherwise, this is a value
+purely kept local by the sender so no.
+
+Summary:
+
+
+
+
+Task C
+
+16.
+Q: What is the throughput of each of the connections in bps (bits per second)?
+What is the total bandwidth of the host on which the clients are running? Discuss the TCP fairness for this case.
+A:
+1. average = 2.535 Mbit/sec
+2. average = 2.546 Mbit/sec
+3. average = 2.575 Mbit/sec
+4. average = 2.550 Mbit/sec
+Total = 10.206 Mbit/s ~ 10 Mbit/sec
+
+This seems fair, both regarding the equal amount of speed and the RTT
+
+17:
+Q: What is the throughput of each of the connections in bps (bits per second)?
+What is the total bandwidth of the host on which the clients are running? Discuss the TCP fairness for this case.
+A:
+1. average = 23.228 Mbit/sec
+2. average = 15.644 Mbit/sec
+3. average = 13.502 Mbit/sec
+4. average = 12.479 Mbit/sec
+5. average = 9.654 Mbit/sec
+6. average = 6.279 Mbit/sec
+7. average = 5.844 Mbit/sec
+8. average = 3.841 Mbit/sec
+9. average = 3.486 Mbit/sec
+Total = 93.9 ~ 94 Mbit/sec
+
+Since the RTT is different for everyone, fairness is to be judged based on their average throughput.
+For example, 2 and 6 has the same RTT, but 2 got better throughput -> unfair.
+Overall the fairness is sound, since higher RTT results in lower throughput.
+
+18:
+Q: Discuss the TCP fairness for this case. For all of these questions you must take a closer look at the relationships between the
+characteristics of the different connections and discuss your findings in the context of the different experiments.
+You are expected to show that you understand the concept of TCP fairness and how the different scenarios may impact the throughput
+relationships that you observe and those that you may expect in general. To help the discussion you may for example want to create
+a scatter plot that show the estimated round trip time (RTT) and throughput against each other (for the different connections).
+You also want to carefully examine and discuss the above throughput equation and how it may apply to each scenario.
+A:
