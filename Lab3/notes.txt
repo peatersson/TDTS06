@@ -147,6 +147,10 @@ Since the RTT is different for everyone, fairness is to be judged based on their
 For example, 2 and 6 has the same RTT, but 2 got better throughput -> unfair.
 Overall the fairness is sound, since higher RTT results in lower throughput.
 
+By looking at the graph we plotted, we see that overall the decline in throughput is linear to the RTT value.
+The cases we can take notice of is the second one, as earlier mentioned. Low RTT and very low throughput, indicates unfairness.
+3 and 4 is also a bit off. Low/medium RTT but high throughput, could also indicate unfairness.
+
 18:
 Q: Discuss the TCP fairness for this case. For all of these questions you must take a closer look at the relationships between the
 characteristics of the different connections and discuss your findings in the context of the different experiments.
@@ -154,4 +158,5 @@ You are expected to show that you understand the concept of TCP fairness and how
 relationships that you observe and those that you may expect in general. To help the discussion you may for example want to create
 a scatter plot that show the estimated round trip time (RTT) and throughput against each other (for the different connections).
 You also want to carefully examine and discuss the above throughput equation and how it may apply to each scenario.
-A:
+A: This one is harder to see, examining the graph that is. This comes from the fact that in generall, the TCP is kinda fair, but certain connections
+is on the unfair end. Conneciton 4,9 and 10 with around 65-75 rtt is different from each other in throughout, which is unfair.
