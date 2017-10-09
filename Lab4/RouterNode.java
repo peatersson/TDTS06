@@ -13,6 +13,9 @@ public class RouterNode {
     myGUI =new GuiTextArea("  Output window for Router #"+ ID + "  ");
 
     System.arraycopy(costs, 0, this.costs, 0, RouterSimulator.NUM_NODES);
+    
+    //this.costs = costs;
+    myGUI.println(costs.toString());
 
   }
 
@@ -33,6 +36,7 @@ public class RouterNode {
   public void printDistanceTable() {
 	  myGUI.println("Current table for " + myID +
 			"  at time " + sim.getClocktime());
+    myGUI.println("test");
   }
 
   //--------------------------------------------------
