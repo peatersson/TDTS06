@@ -100,8 +100,16 @@ public class RouterNode {
 
     costs[dest] = newcost;
 
-    for (int i = 0; i < this.sim.NUM_NODES; i++) {
+    if (costs[dest] < distance[dest]) {
+      distance[dest] = costs[dest];
+      routes[dest] = dest;
+    }
 
+    for (int i = 0; i < this.sim.NUM_NODES; i++) {
+      if (costs[i] != this.sim.INFINITY) {
+        sendUpdate(new RouterPacket(myID, i, distance));
+      }
+    }
   }
 }
 
