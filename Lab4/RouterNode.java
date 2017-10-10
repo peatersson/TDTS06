@@ -40,12 +40,15 @@ public class RouterNode {
     distance_change = false;
 
     for (int i = 0; i < this.sim.NUM_NODES; i++){
-      if (distance[i] > pkt.mincost[i] + distance[pkt.sourceid]){
-        distance[i] = pkt.mincost[i] + distance[pkt.sourceid];
-        routes[i] = routes[pkt.sourceid];
+      if (i != myID){
+        if (distance[i] > pkt.mincost[i] + distance[pkt.sourceid]) {
+          distance[i] = pkt.mincost[i] + distance[pkt.sourceid];
+          routes[i] = routes[pkt.sourceid];
 
-        distance_change = true;
+          distance_change = true;
+        }
       }
+
     }
 
     if (distance_change) {
@@ -103,6 +106,8 @@ public class RouterNode {
     if (costs[dest] < distance[dest]) {
       distance[dest] = costs[dest];
       routes[dest] = dest;
+    } else if (routes[dest] =  dest){
+      distance[dest] = newcost;
     }
 
     for (int i = 0; i < this.sim.NUM_NODES; i++) {
