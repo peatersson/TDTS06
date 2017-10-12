@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.*;
 
 public class RouterNode {
   private int myID;
@@ -40,15 +41,24 @@ public class RouterNode {
     distance_change = false;
 
     for (int i = 0; i < this.sim.NUM_NODES; i++){
-      if (i != myID){
-        if (distance[i] > pkt.mincost[i] + distance[pkt.sourceid]) {
-          distance[i] = pkt.mincost[i] + distance[pkt.sourceid];
+      if (i != myID && i != pkt.sourceid){
+        if (distance[i] > pkt.mincost[i] + costs[pkt.sourceid]) {
+          distance[i] = pkt.mincost[i] + costs[pkt.sourceid];
           routes[i] = routes[pkt.sourceid];
 
           distance_change = true;
         }
-      }
+        if ((routes[i] == pkt.sourceid) && (costs[i] < (costs[pkt.sourceid] + pkt.mincost[i]))){
+          distance[i] = costs[i];
+          routes[i] = i;
 
+          distance_change = true;
+        }
+
+        if (!distance_change && pkt.mincost[i] > distance[i] + distance[pkt.sourceid]){
+          sendUpdate(new RouterPacket(myID, i, distance));
+        }
+      }
     }
 
     if (distance_change) {
@@ -106,13 +116,19 @@ public class RouterNode {
     if (costs[dest] < distance[dest]) {
       distance[dest] = costs[dest];
       routes[dest] = dest;
-    } else if (routes[dest] =  dest){
+
+      distance_change = true;
+    } else if (routes[dest] ==  dest){
       distance[dest] = newcost;
+
+      distance_change = true;
     }
 
-    for (int i = 0; i < this.sim.NUM_NODES; i++) {
-      if (costs[i] != this.sim.INFINITY) {
-        sendUpdate(new RouterPacket(myID, i, distance));
+    if (distance_change) {
+      for (int i = 0; i < this.sim.NUM_NODES; i++) {
+        if (costs[i] != this.sim.INFINITY) {
+          sendUpdate(new RouterPacket(myID, i, distance));
+        }
       }
     }
   }
