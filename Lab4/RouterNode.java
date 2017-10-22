@@ -89,34 +89,8 @@ public class RouterNode {
 
   //--------------------------------------------------
   public void updateLinkCost(int dest, int newcost) {
-      System.out.println("1 MyID: " + myID + " Distance: " + Arrays.toString(distance[myID]));
       costs[dest] = newcost;
-     /* for (int i = 0; i < RouterSimulator.NUM_NODES; i++) {
-          if (routes[i] == dest){
-              distance[myID][i] = newcost;
-          }
-      }*/
-      System.out.println("2 MyID: " + myID + " Distance: " + Arrays.toString(distance[myID]));
       updateCosts(true);
-    // distance_change = false;
-
-   /* costs[dest] = newcost;
-
-
-      if (costs[dest] < distance[dest]) {
-      distance[dest] = costs[dest];
-      routes[dest] = dest;
-
-      distance_change = true;
-    } else if (routes[dest] ==  dest){
-      distance[dest] = newcost;
-
-      distance_change = true;
-    }
-
-    if (distance_change) {
-        updateNeighbor(distance[myID]);
-    }*/
   }
 
   public void updateNeighbor(int[] distance){
@@ -132,21 +106,22 @@ public class RouterNode {
       for(int dest = 0; dest < RouterSimulator.NUM_NODES; dest++){
           if(dest != myID){
               int newShortestDistance = RouterSimulator.INFINITY;
+              int oldRoute = routes[dest];
+              int oldDistance = distance[myID][dest];
               for(int j = 0; j < RouterSimulator.NUM_NODES; j++){
-                  if(costs[j] != RouterSimulator.INFINITY){
-                      if(newShortestDistance > distance[j][dest] + costs[j]){  //distance[myID][dest] > distance[j][dest] + costs[j]){
-                          //if(link)
-                            //  System.out.println("ID: " + myID+ " j: " + j + " dest: " + dest + " myID distance: " + distance[myID][dest] + " costs: " + costs[j] + " distance J: " + distance[j][dest]+ " route: " + routes[dest]);
+                  if(costs[j] != RouterSimulator.INFINITY && j != myID){
+                      if(newShortestDistance > distance[j][dest] + costs[j]){
                           distance[myID][dest] = distance[j][dest] + costs[j];
                           newShortestDistance = distance[myID][dest];
                           routes[dest] = j;
-                          distance_change = true;
                       }
                   }
               }
+              if(oldRoute != routes[dest] || oldDistance != distance[myID][dest]){
+                  distance_change = true;
+              }
           }
       }
-
       if (distance_change) {
           System.out.println("ID: " + myID+ " myID distance: " + Arrays.toString(distance[myID]) + " costs: " + Arrays.toString(costs) + " distance J: " + " route: " + Arrays.toString(routes));
           updateNeighbor(distance[myID]);
