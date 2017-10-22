@@ -10,7 +10,7 @@ public class RouterNode {
   private int[] routes = new int[RouterSimulator.NUM_NODES];
 
   private boolean distance_change = false;
-  private boolean poison_enabled = false;
+  private boolean poison_enabled = true;
 
   //--------------------------------------------------
   public RouterNode(int ID, RouterSimulator sim, int[] costs) {
@@ -45,13 +45,18 @@ public class RouterNode {
   //int sourceid, int destid, int[] mincost
   public void recvUpdate(RouterPacket pkt) {
       distance[pkt.sourceid] = pkt.mincost;
-
-      updateCosts(false);
-
+      updateCosts();
   }
 
   //--------------------------------------------------
   private void sendUpdate(RouterPacket pkt) {
+      if(poison_enabled){
+          for(int i = 0; i < RouterSimulator.NUM_NODES; i++){
+              if(routes[i] == pkt.destid && i != myID){
+                  pkt.mincost[i] = RouterSimulator.INFINITY;
+              }
+          }
+      }
     sim.toLayer2(pkt);
   }
   
@@ -90,7 +95,7 @@ public class RouterNode {
   //--------------------------------------------------
   public void updateLinkCost(int dest, int newcost) {
       costs[dest] = newcost;
-      updateCosts(true);
+      updateCosts();
   }
 
   public void updateNeighbor(int[] distance){
@@ -101,7 +106,7 @@ public class RouterNode {
       }
   }
 
-  public void updateCosts(boolean link){
+  public void updateCosts(){
       distance_change = false;
       for(int dest = 0; dest < RouterSimulator.NUM_NODES; dest++){
           if(dest != myID){
