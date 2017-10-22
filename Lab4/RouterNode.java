@@ -131,29 +131,24 @@ public class RouterNode {
       distance_change = false;
       for(int dest = 0; dest < RouterSimulator.NUM_NODES; dest++){
           if(dest != myID){
+              int newShortestDistance = RouterSimulator.INFINITY;
               for(int j = 0; j < RouterSimulator.NUM_NODES; j++){
                   if(costs[j] != RouterSimulator.INFINITY){
-                      if(distance[myID][dest] > distance[j][dest] + costs[j]){
-                          if(link)
-                              System.out.println("ID: " + myID+ " j: " + j + " dest: " + dest + " myID distance: " + distance[myID][dest] + " costs: " + costs[j] + " distance J: " + distance[j][dest]+ " route: " + routes[dest]);
+                      if(newShortestDistance > distance[j][dest] + costs[j]){  //distance[myID][dest] > distance[j][dest] + costs[j]){
+                          //if(link)
+                            //  System.out.println("ID: " + myID+ " j: " + j + " dest: " + dest + " myID distance: " + distance[myID][dest] + " costs: " + costs[j] + " distance J: " + distance[j][dest]+ " route: " + routes[dest]);
                           distance[myID][dest] = distance[j][dest] + costs[j];
+                          newShortestDistance = distance[myID][dest];
                           routes[dest] = j;
                           distance_change = true;
-                      } else if(routes[j] == dest){
-
                       }
                   }
               }
           }
       }
 
-      if(!distance_change){
-          System.out.println("Not changed");
-         //System.out.println("ID: " + myID+ " costs: " + Arrays.toString(costs) + " distance: " + Arrays.toString(distance[myID]));
-      }
-
       if (distance_change) {
-          System.out.println("UPDATED");
+          System.out.println("ID: " + myID+ " myID distance: " + Arrays.toString(distance[myID]) + " costs: " + Arrays.toString(costs) + " distance J: " + " route: " + Arrays.toString(routes));
           updateNeighbor(distance[myID]);
       }
   }
