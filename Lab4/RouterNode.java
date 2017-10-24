@@ -128,7 +128,6 @@ public class RouterNode {
           }
       }
       if (distance_change) {
-          System.out.println("ID: " + myID+ " myID distance: " + Arrays.toString(distance[myID]) + " costs: " + Arrays.toString(costs) + " distance J: " + " route: " + Arrays.toString(routes));
           updateNeighbor(distance[myID]);
       }
   }
